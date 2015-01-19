@@ -2,7 +2,7 @@
 
 pkgname=arch-macbookair6.2-config
 _gitname=$pkgname
-pkgver=1.c23446c
+pkgver=3.a28e047
 pkgrel=1
 pkgdesc="Configuration files for an optimal use of a MacbookAir6,2 (2013 13\")"
 url="https://github.com/sebikul/${_gitname}"
@@ -24,5 +24,12 @@ package() {
   pwd
   install -Dm 644 udev/90-dev_power_save.rules "${pkgdir}/etc/udev/rules.d/90-dev_power_save.rules"
   install -Dm 644 udev/90-xhc_sleep.rules "${pkgdir}/etc/udev/rules.d/90-xhc_sleep.rules"
+  
+  install -Dm 644 systemd/powertop.service "${pkgdir}/etc/systemd/system/powertop.service"
+  
+  for FILE in `ls modprobe`; do
+    install -Dm 644 $FILE "${pkgdir}/etc/modprobe.d/$FILE"
+  done
+  
 
 }
