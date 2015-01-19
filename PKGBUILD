@@ -2,14 +2,14 @@
 
 pkgname=arch-macbookair6.2-config
 _gitname=$pkgname
-pkgver=1
+pkgver=1.c23446c
 pkgrel=1
 pkgdesc="Configuration files for an optimal use of a MacbookAir6,2 (2013 13\")"
 url="https://github.com/sebikul/${_gitname}"
 arch=('any')
 license=('GPL2')
 depends=('dkms' 'linux-lts-headers')
-install=$pkgname.install
+makedepends=('git')
 source=("git+https://github.com/sebikul/${_gitname}.git")
 md5sums=('SKIP')
 
@@ -20,11 +20,9 @@ pkgver() {
 }
 
 package() {
-  cd "${srcdir}/"
-  install -Dm 644 mba6x_bl-dkms.conf "${pkgdir}/etc/modules-load.d/mba6x_bl-dkms.conf"
-
   cd "${srcdir}/${_gitname}"
-  for FILE in Makefile dkms.conf mba6x_bl.c; do
-    install -Dm 644 $FILE "${pkgdir}/usr/src/mba6x_bl-$pkgver/$FILE"
-  done
+  pwd
+  install -Dm 644 udev/90-dev_power_save.rules "${pkgdir}/etc/udev/rules.d/90-dev_power_save.rules"
+  install -Dm 644 udev/90-xhc_sleep.rules "${pkgdir}/etc/udev/rules.d/90-xhc_sleep.rules"
+
 }
