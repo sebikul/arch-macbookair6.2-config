@@ -1,2 +1,4 @@
 test/*
 PKGBUILD
+
+systemd-warnings.install
