@@ -1,0 +1,10 @@
+[Unit]
+Description=Disable the buggy interrupt at boot
+
+[Service]
+Type=oneshot
+ExecStart=echo "disable" > /sys/firmware/acpi/interrupts/gpe66
+
+
+[Install]
+WantedBy=multi-user.target
