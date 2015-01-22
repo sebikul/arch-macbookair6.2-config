@@ -3,7 +3,7 @@ Description=Disable the buggy interrupt at boot
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/echo "disable" > /sys/firmware/acpi/interrupts/gpe66
+ExecStart=/usr/bin/su -c "/usr/bin/echo \"disable\" > /sys/firmware/acpi/interrupts/gpe66"
 
 
 [Install]
