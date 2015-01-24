@@ -1,0 +1,10 @@
+[Unit]
+Description=Disable the buggy interrupt at boot
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/su -c "/usr/bin/echo \"50\" > /sys/class/backlight/mba6x_backlight/brightness"
+
+
+[Install]
+WantedBy=multi-user.target
